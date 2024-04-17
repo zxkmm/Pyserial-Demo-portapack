@@ -60,8 +60,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         port_list = list(serial.tools.list_ports.comports())
         self.s1__box_2.clear()
         for port in port_list:
-            self.Com_Dict["%s" % port[0]] = "%s" % port[1]
-            self.s1__box_2.addItem(port[0])
+            if port.description == "PortaPack Mayhem":
+                self.Com_Dict["%s" % port[0]] = "%s" % port[1]
+                self.s1__box_2.addItem(port[0])
         if len(self.Com_Dict) == 0:
             self.state_label.setText(" 无串口")
 
